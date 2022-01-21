@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+
+* {
+  overflow:hidden
+}
+
+.block__default {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+  background-color: wheat;
+  border-radius: 15px;
+  border: solid 2px gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.block__default>span {
+  margin: 5px
+}
+
+.block__default>img {
+  width: 75px;
+}
+
+.blocks__wrapper {
+  display: flex;
+  position: absolute;
+  margin-top: -20px;
+}
+
+.button {
+  margin-top: 150px;
+  height: 50px;
+  width: 250px;
+  background-color: #6782b4;
+  background-image: linear-gradient(315deg, #6782b4 0%, #b1bfd8 74%);
+  border: none;
+  border-radius: 15px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 20px;
+  color: wheat;
+}
+
+.button:active {
+  transform: scale(.95);
+}
+
+.button__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.stickers-banner__box1{
+  background: url(./Components/box_1.png) no-repeat;
+  background-size: 50px;
+}
+
+.stickers-banner__box2{
+  background: url(./Components/box_2.png) no-repeat;
+  background-size: 50px;
+}
+
+.stickers-banner__box3{
+  background: url(./Components/box_3.png) no-repeat;
+  background-size: 50px;
+}
+
+.stickers-banner__box4{
+  background: url(./Components/box_4.png) no-repeat;
+  background-size: 50px;
+}
+
+.stickers-banner__box5{
+  background: url(./Components/box_5.png) no-repeat;
+  background-size: 59px;
+}
+
+.arrow-4 {
+  position: relative;
+  cursor: pointer;
+  margin:20px;
+  margin-left: 125px;
+  width: 66px;
+  height: 30px;
+}
+.arrow-4-left {
+  position: absolute;
+  background-color: transparent;
+  top: 10px;
+  left: 0;
+  width: 40px;
+  height: 10px;
+  display: block;
+  transform: rotate(35deg);
+  float: right;
+  border-radius: 2px;
+}
+.arrow-4-left:after {
+  content: "";
+  background-color: gold;
+  width: 40px;
+  height: 10px;
+  display: block;
+  float: right;
+  border-radius: 6px 10px 10px 6px;
+  transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 0.8);
+  z-index: -1;
+}
+
+.arrow-4-right {
+  position: absolute;
+  background-color: transparent;
+  top: 10px;
+  left: 26px;
+  width: 40px;
+  height: 10px;
+  display: block;
+  transform: rotate(-35deg);
+  float: right;
+  border-radius: 2px;
+}
+.arrow-4-right:after {
+  content: "";
+  background-color: gold;
+  width: 40px;
+  height: 10px;
+  display: block;
+  float: right;
+  border-radius: 10px 6px 6px 10px;
+  transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 0.8);
+  z-index: -1;
+}
+.open .arrow-4-left:after {
+  transform-origin: center center;
+  transform: rotate(-70deg);
+}
+.open .arrow-4-right:after {
+  transform-origin: center center;
+  transform: rotate(70deg);
+}
+
+.background {
+  background-color: #7f53ac;
+  background-image: linear-gradient(315deg, #7f53ac 0%, #647dee 74%);
+  width: 100vw;
+  height: 100vh;
+}
+
+@keyframes box {
+  from { transform: scale(.9) }
+  50% { transform: scale(1.1); }
+  to { transform: scale(.9) }
+ }
