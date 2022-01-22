@@ -13,7 +13,7 @@ function getRandomInRange(min, max) {
   }
 
 setTimeout(() => {
-    for (let index = 1; index < 250; index++) {
+    for (let index = 1; index < 2500; index++) {
         var element = document.createElement("div");
         //element.innerHTML = `<span>${index}</span>`;
         element.setAttribute("class", "block__default");
@@ -64,7 +64,7 @@ const Blocks = props => (
         
         </div>
         <div className='button__wrapper'>
-            <button className='button' onClick={() => {props.Animation(5, 15)}}>Крутить</button>
+            <button className='button' onClick={() => {props.Animation(getRandomInRange(3,10), getRandomInRange(10,20))}}>Крутить</button>
         </div>
     </div>
 );

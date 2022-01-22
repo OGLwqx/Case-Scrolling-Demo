@@ -27,17 +27,20 @@ const App = () => {
     var changeSpeed2 = true;
     var start_time = parseInt((Date.now() / 1000).toFixed(0))
     setGetPrize(false)
+    var speedStep = speed / 10
+    var timeStep = (duration * 1000) / 40
+    setTimeout(() => {
+      var slowing = setInterval(() => {
+        if(speed <= 0) {
+          speed = 0;
+          clearInterval(slowing)
+          return;
+        }
+        speed -= speedStep
+        console.log(speed)
+      }, timeStep);
+    }, (duration * 1000) * 0.75);
     var timer = setInterval(() => {
-      if(start_time + duration - (Date.now() / 1000) < duration * 0.5 && changeSpeed) {
-        speed = speed * 0.4
-        //console.log(changeSpeed, speed)
-        changeSpeed = false
-      }
-      if(start_time + duration - (Date.now() / 1000) < duration * 0.25 && changeSpeed2) {
-        speed = speed * 0.1
-        //console.log(changeSpeed2, speed)
-        changeSpeed2 = false
-      }
       //console.log(start_time + duration - (Date.now() / 1000))
       if(parseInt((Date.now() / 1000).toFixed(0)) - start_time > duration) {
         clearInterval(timer)
