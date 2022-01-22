@@ -9,31 +9,36 @@ const App = () => {
   const [count, setCount] = useState(0);
   const [getPrize, setGetPrize] = useState(false);
   const [prizeNum, setPrizeNum] = useState('')
+  const [lastWinNum, setLastWinNum] = useState(1)
 
   function setPrize(data) {
     setGetPrize(data);
   }
 
-  var pixels = 140
+  var pixels = 0
 
   function Animation(duration, speed) {
+    var arrow = document.getElementById('arrow')
+    pixels = arrow.offsetLeft + 38.5
     setCount(0)
+    var lastWin = document.getElementById(lastWinNum)
+    lastWin.setAttribute("style", ``);
     var changeSpeed = true;
     var changeSpeed2 = true;
     var start_time = parseInt((Date.now() / 1000).toFixed(0))
     setGetPrize(false)
     var timer = setInterval(() => {
-      if(start_time + duration - (Date.now() / 1000) < 0 && changeSpeed) {
+      if(start_time + duration - (Date.now() / 1000) < duration * 0.5 && changeSpeed) {
         speed = speed * 0.4
-        console.log(changeSpeed, speed)
+        //console.log(changeSpeed, speed)
         changeSpeed = false
       }
-      if(start_time + duration - (Date.now() / 1000) < -0.2 && changeSpeed2) {
+      if(start_time + duration - (Date.now() / 1000) < duration * 0.25 && changeSpeed2) {
         speed = speed * 0.1
-        console.log(changeSpeed, speed)
+        //console.log(changeSpeed2, speed)
         changeSpeed2 = false
       }
-      console.log(start_time + duration - (Date.now() / 1000))
+      //console.log(start_time + duration - (Date.now() / 1000))
       if(parseInt((Date.now() / 1000).toFixed(0)) - start_time > duration) {
         clearInterval(timer)
         //console.log(true)
@@ -46,17 +51,23 @@ const App = () => {
           const n = blocks_array[index+1]
           //console.log(c.offsetLeft)
           if(pixels > c.offsetLeft && pixels < n.offsetLeft)  {
-            console.log(index+1)
-            console.log(pixels, c.offsetLeft, n.offsetLeft)
-            setPrizeNum(index+1)
-            var prizeBlock = document.getElementById(index+1)
-            prizeBlock.setAttribute("style", `animation: box 3s ease-in-out infinite;`);
-            changeSpeed = true
-            changeSpeed2 = true
+            console.log('win')
             setTimeout(() => {
-              prizeBlock.setAttribute("style", `transform: scale(1)`);
-              setGetPrize(false)
-            }, 5000);
+              console.log('win_animation', index+1)
+              console.log(pixels)
+              //console.log(index+1)
+              //console.log(pixels, c.offsetLeft, n.offsetLeft)
+              setPrizeNum(index+1)
+              var prizeBlock = document.getElementById(index+1)
+              setLastWinNum(index+1)
+              prizeBlock.setAttribute("style", `animation: box 3s ease-in-out infinite;`);
+              changeSpeed = true
+              changeSpeed2 = true
+              setTimeout(() => {
+                prizeBlock.setAttribute("style", `transform: scale(1)`);
+                setGetPrize(false)
+              }, 5000);
+            }, 700);
           }
         }
 

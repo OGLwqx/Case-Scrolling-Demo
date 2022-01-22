@@ -51,9 +51,11 @@ const Blocks = props => (
         : 
         <div></div>
         }
-        <div class="arrow-4" id='arrow'>
-            <span class="arrow-4-left"></span>
-            <span class="arrow-4-right"></span>
+        <div className='arrow__wrapper'>
+            <div class="arrow" id='arrow'>
+                <span class="arrow-left"></span>
+                <span class="arrow-right"></span>
+            </div>
         </div>
         <div className='blocks__wrapper' style={{
 			position: 'absolute',
@@ -62,7 +64,7 @@ const Blocks = props => (
         
         </div>
         <div className='button__wrapper'>
-            <button className='button' onClick={() => {props.Animation(2, 10)}}>Крутить</button>
+            <button className='button' onClick={() => {props.Animation(5, 15)}}>Крутить</button>
         </div>
     </div>
 );

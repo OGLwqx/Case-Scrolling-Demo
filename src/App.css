@@ -78,15 +78,20 @@
   background-size: 59px;
 }
 
-.arrow-4 {
+.arrow__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow {
   position: relative;
   cursor: pointer;
   margin:20px;
-  margin-left: 125px;
   width: 66px;
   height: 30px;
 }
-.arrow-4-left {
+.arrow-left {
   position: absolute;
   background-color: transparent;
   top: 10px;
@@ -98,7 +103,7 @@
   float: right;
   border-radius: 2px;
 }
-.arrow-4-left:after {
+.arrow-left:after {
   content: "";
   background-color: gold;
   width: 40px;
@@ -110,7 +115,7 @@
   z-index: -1;
 }
 
-.arrow-4-right {
+.arrow-right {
   position: absolute;
   background-color: transparent;
   top: 10px;
@@ -122,7 +127,7 @@
   float: right;
   border-radius: 2px;
 }
-.arrow-4-right:after {
+.arrow-right:after {
   content: "";
   background-color: gold;
   width: 40px;
@@ -133,11 +138,11 @@
   transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 0.8);
   z-index: -1;
 }
-.open .arrow-4-left:after {
+.open .arrow-left:after {
   transform-origin: center center;
   transform: rotate(-70deg);
 }
-.open .arrow-4-right:after {
+.open .arrow-right:after {
   transform-origin: center center;
   transform: rotate(70deg);
 }
@@ -150,7 +155,8 @@
 }
 
 @keyframes box {
-  from { transform: scale(.9) }
-  50% { transform: scale(1.1); }
-  to { transform: scale(.9) }
+  from { transform: scale(1) }
+  33% { transform: scale(.9) }
+  66% { transform: scale(1.1); }
+  to { transform: scale(1) }
  }
