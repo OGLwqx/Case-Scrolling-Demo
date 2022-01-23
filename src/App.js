@@ -21,15 +21,19 @@ function getRandomInRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-useEffect(() => {
-  setTimeout(() => {
-    var elements = []
-    for (let index = 1; index < 500; index++) {
+async function getBlocks(count) {
+    for (let index = 1; index < count; index++) {
         var element = document.createElement("div");
         //element.innerHTML = `<span>${index}</span>`;
         element.setAttribute("class", "block__default");
         element.setAttribute("id", `${index}`);
         document.getElementById("list").appendChild(element);
+    }
+}
+
+function getImages(count) {
+  var elements = []
+  for (let index = 1; index < count; index++) {
         var element2 = document.createElement("img");
         var image = getRandomInRange(1,5);
         switch (image) {
@@ -54,9 +58,16 @@ useEffect(() => {
                 elements.push({id: index, item: box_05})
                 break;
         }
+        element2.setAttribute("id", `image-${index}`);
         document.getElementById(index).appendChild(element2);
-    }
-    setItemsList(elements)
+        setItemsList(elements)
+  }
+}
+
+useEffect(() => {
+  setTimeout(() => {
+    getBlocks(500)
+    getImages(500)
   }, 0);
 }, [])
 
@@ -66,7 +77,6 @@ useEffect(() => {
   function Animation(duration, speed) {
     var arrow = document.getElementById('arrow')
     pixels = arrow.offsetLeft + 38.5
-    setCount(0)
     var lastWin = document.getElementById(lastWinNum)
     lastWin.setAttribute("style", ``);
     var changeSpeed = true;
@@ -101,6 +111,7 @@ useEffect(() => {
               var showPrize = document.createElement("img");
               showPrize.setAttribute("id", 'winItem');
               var winItem = items[index]
+              console.log(winItem)
               showPrize.setAttribute("src", winItem.item);
               document.getElementById("cell").appendChild(showPrize);
               console.log(winItem)
@@ -115,6 +126,11 @@ useEffect(() => {
                 prizeBlock.setAttribute("style", `transform: scale(1)`);
                 document.getElementById("winItem").remove();
                 setGetPrize(false)
+                for (let index = 1; index < items.length; index++) {
+                  document.getElementById(`image-${index}`).remove()
+                }
+                setCount(0)
+                getImages(500)
               }, 5000);
             }, 700);
           }

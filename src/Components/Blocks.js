@@ -8,11 +8,6 @@ function getRandomInRange(min, max) {
 
 const Blocks = props => (
 	<div className='background'>
-        {props.getPrize ? 
-        <div>Приз {props.prizeNum}</div> 
-        : 
-        <div></div>
-        }
         <div className='item-cell__wrapper'>
             <div className='item-cell' id='cell'>
                 
