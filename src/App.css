@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
 
 * {
-  overflow:hidden
+  overflow: hidden !important;
 }
 
 .block__default {
@@ -41,41 +41,38 @@
   font-family: 'Nunito', sans-serif;
   font-size: 20px;
   color: wheat;
+  user-select: none;
 }
 
 .button:active {
   transform: scale(.95);
 }
 
-.button__wrapper {
+.item-cell__wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.stickers-banner__box1{
-  background: url(./Components/box_1.png) no-repeat;
-  background-size: 50px;
+.item-cell {
+  border-radius: 15px;
+  background-color: white;
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.stickers-banner__box2{
-  background: url(./Components/box_2.png) no-repeat;
-  background-size: 50px;
+.item-cell>img {
+  width: 75px;
 }
 
-.stickers-banner__box3{
-  background: url(./Components/box_3.png) no-repeat;
-  background-size: 50px;
-}
-
-.stickers-banner__box4{
-  background: url(./Components/box_4.png) no-repeat;
-  background-size: 50px;
-}
-
-.stickers-banner__box5{
-  background: url(./Components/box_5.png) no-repeat;
-  background-size: 59px;
+.button__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .arrow__wrapper {
