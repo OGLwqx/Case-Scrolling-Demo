@@ -8,6 +8,7 @@ import box_02 from './Components/box_2.png';
 import box_03 from './Components/box_3.png';
 import box_04 from './Components/box_4.png';
 import box_05 from './Components/box_5.png';
+const boxes = [box_01, box_02, box_03, box_04, box_05]
 
 const App = () => {
 
@@ -35,29 +36,9 @@ function getImages(count) {
   var elements = []
   for (let index = 1; index < count; index++) {
         var element2 = document.createElement("img");
-        var image = getRandomInRange(1,5);
-        switch (image) {
-            case 1:
-                element2.setAttribute("src", box_01);
-                elements.push({id: index, item: box_01})
-                break;
-            case 2:
-                element2.setAttribute("src", box_02);
-                elements.push({id: index, item: box_02})
-                break;
-            case 3:
-                element2.setAttribute("src", box_03);
-                elements.push({id: index, item: box_03})
-                break;
-            case 4:
-                element2.setAttribute("src", box_04);
-                elements.push({id: index, item: box_04})
-                break;
-            case 5:
-                element2.setAttribute("src", box_05);
-                elements.push({id: index, item: box_05})
-                break;
-        }
+        var imageNumber = getRandomInRange(0,4);
+        element2.setAttribute("src", boxes[imageNumber]);
+        elements.push({id: index, item: boxes[imageNumber]})
         element2.setAttribute("id", `image-${index}`);
         document.getElementById(index).appendChild(element2);
         setItemsList(elements)
@@ -68,6 +49,12 @@ useEffect(() => {
   setTimeout(() => {
     getBlocks(500)
     getImages(500)
+
+    //document.querySelector('.button').addEventListener("click", (e) => {
+    //  if(e.isTrusted) {
+    //    Animation(getRandomInRange(3,10), getRandomInRange(10,20))
+    //  }
+    //})
   }, 0);
 }, [])
 
@@ -75,12 +62,11 @@ useEffect(() => {
   var pixels = 0
 
   function Animation(duration, speed) {
+    document.getElementsByClassName('button')[0].disabled = true;
     var arrow = document.getElementById('arrow')
     pixels = arrow.offsetLeft + 38.5
     var lastWin = document.getElementById(lastWinNum)
     lastWin.setAttribute("style", ``);
-    var changeSpeed = true;
-    var changeSpeed2 = true;
     var start_time = parseInt((Date.now() / 1000).toFixed(0))
     setGetPrize(false)
     var speedStep = speed / 10
@@ -93,7 +79,6 @@ useEffect(() => {
           return;
         }
         speed -= speedStep
-        //console.log(speed)
       }, timeStep);
     }, (duration * 1000) * 0.50);
     var timer = setInterval(() => {
@@ -111,20 +96,16 @@ useEffect(() => {
               var showPrize = document.createElement("img");
               showPrize.setAttribute("id", 'winItem');
               var winItem = items[index]
-              console.log(winItem)
               showPrize.setAttribute("src", winItem.item);
               document.getElementById("cell").appendChild(showPrize);
-              console.log(winItem)
-              console.log(pixels)
               setPrizeNum(index+1)
               var prizeBlock = document.getElementById(index+1)
               setLastWinNum(index+1)
               prizeBlock.setAttribute("style", `animation: box 3s ease-in-out infinite;`);
-              changeSpeed = true
-              changeSpeed2 = true
               setTimeout(() => {
                 prizeBlock.setAttribute("style", `transform: scale(1)`);
                 document.getElementById("winItem").remove();
+                document.getElementsByClassName('button')[0].disabled = false;
                 setGetPrize(false)
                 for (let index = 1; index < items.length; index++) {
                   document.getElementById(`image-${index}`).remove()
